@@ -1,34 +1,51 @@
 <template>
   <div class="login-container">
-    <el-form class="login-form" ref="loginFromRef">
+    <el-form
+      :model="loginForm"
+      :rules="loginRules"
+      class="login-form"
+      ref="loginFromRef"
+    >
       <div class="title-container">
         <h3 class="title">用户登录</h3>
       </div>
 
       <el-form-item prop="username">
         <span class="svg-container">
-          <el-icon>
-            <avatar />
-          </el-icon>
+          <svg-icon icon="user"></svg-icon>
         </span>
-        <el-input placeholder="username" name="username" type="text" />
+        <el-input
+          v-model="loginForm.username"
+          placeholder="username"
+          name="username"
+          type="text"
+        />
       </el-form-item>
 
       <el-form-item prop="password">
         <span class="svg-container">
-          <el-icon>
-            <avatar />
-          </el-icon>
+          <svg-icon icon="password"></svg-icon>
         </span>
-        <el-input placeholder="password" name="password" />
-        <span class="show-pwd">
-          <el-icon>
-            <avatar />
-          </el-icon>
+        <el-input
+          v-model="loginForm.password"
+          :type="passwordType"
+          placeholder="password"
+          name="password"
+        />
+        <span class="show-pwd" @click="onChangePwdType">
+          <span class="svg-container">
+            <svg-icon
+              :icon="passwordType === 'password' ? 'eye' : 'eye-open'"
+            ></svg-icon>
+          </span>
         </span>
       </el-form-item>
 
-      <el-button type="primary" style="width: 100%; margin-bottom: 30px"
+      <el-button
+        type="primary"
+        style="width: 100%; margin-bottom: 30px"
+        :loading="loading"
+        @click="handleLogin"
         >登录</el-button
       >
     </el-form>
@@ -37,8 +54,55 @@
 
 <script setup>
 // 导入组件之后无需注册可直接使用
-import { Avatar } from '@element-plus/icons'
-import {} from 'vue'
+import { ref } from 'vue'
+import { validatePassword } from './rules'
+import { useStore } from 'vuex'
+const loginForm = ref({
+  username: 'super-admin',
+  password: '123456'
+})
+const loginRules = ref({
+  username: [
+    {
+      required: true,
+      trigger: 'blur',
+      message: '用户名为必填项'
+    }
+  ],
+  password: [
+    {
+      required: true,
+      trigger: 'blur',
+      validator: validatePassword()
+    }
+  ]
+})
+const passwordType = ref('password')
+const onChangePwdType = () => {
+  if (passwordType.value === 'password') {
+    passwordType.value = 'text'
+  } else {
+    passwordType.value = 'password'
+  }
+}
+const loading = ref(false)
+const loginFromRef = ref(null)
+const store = useStore()
+const handleLogin = () => {
+  loginFromRef.value.validate((valid) => {
+    if (!valid) return
+    loading.value = true
+    store
+      .dispatch('user/login', loginForm.value)
+      .then(() => {
+        loading.value = false
+      })
+      .catch((err) => {
+        console.log(err)
+        loading.value = false
+      })
+  })
+}
 </script>
 
 <style lang="scss" scoped>
@@ -108,7 +172,6 @@ $cursor: #fff;
   .show-pwd {
     position: absolute;
     right: 10px;
-    top: 7px;
     font-size: 16px;
     color: $dark_gray;
     cursor: pointer;
