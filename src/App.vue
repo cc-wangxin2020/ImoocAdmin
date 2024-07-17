@@ -1,14 +1,19 @@
 <template>
-  <router-view></router-view>
+  <el-config-provider :locale="$store.getters.language === 'en' ? en : zhCn">
+    <router-view></router-view>
+  </el-config-provider>
 </template>
 
-<script>
+<script setup>
+import zhCn from 'element-plus/es/locale/lang/zh-cn.mjs'
+import en from 'element-plus/es/locale/lang/en'
+import { useStore } from 'vuex'
+import { generateNewStyle, writeNewStyle } from '@/utils/theme'
 
-export default {
-  name: 'App'
-}
+const store = useStore()
+generateNewStyle(store.getters.mainColor).then((newStyleText) => {
+  writeNewStyle(newStyleText)
+})
 </script>
 
-<style>
-
-</style>
+<style></style>

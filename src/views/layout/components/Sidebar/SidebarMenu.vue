@@ -28,6 +28,7 @@ const routes = computed(() => {
   const filterRoutes = filterRouters(router.getRoutes())
   return generateMenus(filterRoutes)
 })
+console.log(routes)
 const route = useRoute()
 const activePath = computed(() => {
   const { path } = route

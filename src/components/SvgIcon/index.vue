@@ -6,7 +6,7 @@
     :class="className"
   />
   <svg v-else class="svg-icon" :class="className" aria-hidden="true">
-    <use :xlink:href="iconName" />
+    <use class="icon-use" :xlink:href="iconName" />
   </svg>
 </template>
 
@@ -45,11 +45,16 @@ const iconName = computed(() => `#icon-${props.icon}`)
 
 <style scoped>
 .svg-icon {
-  width: 1em;
-  height: 1em;
+  width: 14px;
+  height: 14px;
   vertical-align: -0.15em;
   fill: currentColor;
   overflow: hidden;
+}
+
+.icon-use {
+  width: 14px;
+  height: 14px;
 }
 
 .svg-external-icon {

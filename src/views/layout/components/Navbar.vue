@@ -3,6 +3,9 @@
     <hamburger class="hamburger-container" />
     <breadcrumb class="breadcrumb-container"></breadcrumb>
     <div class="right-menu">
+      <screenfull class="right-menu-item hover-effect"></screenfull>
+      <theme-select class="right-menu-item hover-effect"></theme-select>
+      <lang-select class="right-menu-item hover-effect"></lang-select>
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
           <el-avatar
@@ -10,19 +13,19 @@
             :size="40"
             :src="$store.getters.userInfo.avatar"
           ></el-avatar>
-          <i class="el-icon-s-tools"></i>
+          <svg-icon icon="search"></svg-icon>
         </div>
         <template #dropdown>
           <el-dropdown-menu class="user-dropdown">
             <router-link to="/">
-              <el-dropdown-item>首页</el-dropdown-item>
+              <el-dropdown-item>{{ $t('msg.navBar.home') }}</el-dropdown-item>
             </router-link>
             <a target="_blank" href="">
-              <el-dropdown-item>课程主页</el-dropdown-item>
+              <el-dropdown-item>{{ $t('msg.navBar.course') }}</el-dropdown-item>
             </a>
-            <el-dropdown-item divided @click="logout"
-              >退出登录</el-dropdown-item
-            >
+            <el-dropdown-item divided @click="logout">{{
+              $t('msg.navBar.logout')
+            }}</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -33,6 +36,9 @@
 <script setup>
 import hamburger from '@/components/hamburger.vue'
 import Breadcrumb from '@/components/Breadcrumb'
+import LangSelect from '@/components/LangSelect'
+import ThemeSelect from '@/components/ThemeSelect'
+import Screenfull from '@/components/Screenfull'
 import {} from 'vue'
 import { useStore } from 'vuex'
 
@@ -68,6 +74,17 @@ const logout = () => {
     align-items: center;
     padding-right: 16px;
     float: right;
+    ::v-deep .right-menu-item {
+      display: inline-block;
+      padding: 0 18px 0 0;
+      font-size: 24px;
+      color: #5a5e66;
+      vertical-align: text-bottom;
+
+      &.hover-effect {
+        cursor: pointer;
+      }
+    }
     ::v-deep .avatar-container {
       cursor: pointer;
       .avatar-wrapper {
