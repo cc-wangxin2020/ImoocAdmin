@@ -3,6 +3,8 @@
     <hamburger class="hamburger-container" />
     <breadcrumb class="breadcrumb-container"></breadcrumb>
     <div class="right-menu">
+      <guide class="right-menu-item hover-effect"></guide>
+      <header-search class="right-menu-item hover-effect"></header-search>
       <screenfull class="right-menu-item hover-effect"></screenfull>
       <theme-select class="right-menu-item hover-effect"></theme-select>
       <lang-select class="right-menu-item hover-effect"></lang-select>
@@ -39,6 +41,8 @@ import Breadcrumb from '@/components/Breadcrumb'
 import LangSelect from '@/components/LangSelect'
 import ThemeSelect from '@/components/ThemeSelect'
 import Screenfull from '@/components/Screenfull'
+import HeaderSearch from '@/components/HeaderSearch'
+import Guide from '@/components/Guide'
 import {} from 'vue'
 import { useStore } from 'vuex'
 

@@ -7,13 +7,6 @@
 <script setup>
 import zhCn from 'element-plus/es/locale/lang/zh-cn.mjs'
 import en from 'element-plus/es/locale/lang/en'
-import { useStore } from 'vuex'
-import { generateNewStyle, writeNewStyle } from '@/utils/theme'
-
-const store = useStore()
-generateNewStyle(store.getters.mainColor).then((newStyleText) => {
-  writeNewStyle(newStyleText)
-})
 </script>
 
 <style></style>

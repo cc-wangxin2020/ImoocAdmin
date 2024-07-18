@@ -13,6 +13,9 @@ module.exports = defineConfig({
         changeOrigin: true
       }
     }
+    // client: {
+    //   overlay: false
+    // }
   },
   chainWebpack(config) {
     // 设置 svg-sprite-loader

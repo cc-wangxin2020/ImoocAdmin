@@ -4,12 +4,14 @@
     :class="[$store.getters.sidebarOpened ? 'openSidebar' : 'hideSidebar']"
   >
     <sidebar
+      id="guide-sidebar"
       class="sidebar-container"
       :style="{ backgroundColor: $store.getters.cssVar.menuBg }"
     ></sidebar>
     <div class="main-container">
       <div class="fixed-header">
         <navbar></navbar>
+        <tags-view id="guide-tags"></tags-view>
       </div>
       <app-main></app-main>
     </div>
@@ -19,8 +21,7 @@
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
 import AppMain from './components/AppMain'
-import variables from '@/styles/variables.module.scss'
-console.log(variables)
+import TagsView from '@/components/TagsView'
 </script>
 <style lang="scss" scoped>
 @import '~@/styles/mixin.scss';
