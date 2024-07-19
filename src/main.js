@@ -7,9 +7,11 @@ import installElementPlus from './plugins/element'
 import installIcons from '@/icons'
 import './permission.js'
 import i18n from './i18n'
+import installFilter from '@/filter'
 
 const app = createApp(App)
 installElementPlus(app)
 // 注册全局组件
 installIcons(app)
+installFilter(app)
 app.use(store).use(router).use(i18n).mount('#app')
