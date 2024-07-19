@@ -25,7 +25,6 @@ import { defineProps, defineEmits, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { watchSwitchLang } from '@/utils/i18n'
 import { getUserManageAllList } from '@/api/user-manage'
-// import { USER_RELATIONS, formatJson } from './Export2ExcelConstants'
 
 defineProps({
   modelValue: {
