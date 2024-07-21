@@ -25,7 +25,7 @@ import { defineProps, defineEmits, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { watchSwitchLang } from '@/utils/i18n'
 import { getUserManageAllList } from '@/api/user-manage'
-
+import { USER_RELATIONS, formatJson } from './Export2ExcelConstants.js'
 defineProps({
   modelValue: {
     type: Boolean,
@@ -43,20 +43,20 @@ const onConfirm = async () => {
   console.log(allUser)
   closed()
   // 导入工具包
-  // const excel = await import('@/utils/Export2Excel')
-  // const data = formatJson(USER_RELATIONS, allUser)
-  // excel.export_json_to_excel({
-  //   // excel 表头
-  //   header: Object.keys(USER_RELATIONS),
-  //   // excel 数据（二维数组结构）
-  //   data,
-  //   // 文件名称
-  //   filename: excelName.value || exportDefaultName,
-  //   // 是否自动列宽
-  //   autoWidth: true,
-  //   // 文件类型
-  //   bookType: 'xlsx'
-  // })
+  const excel = await import('@/utils/Export2Excel')
+  const data = formatJson(USER_RELATIONS, allUser)
+  excel.export_json_to_excel({
+    // excel 表头
+    header: Object.keys(USER_RELATIONS),
+    // excel 数据（二维数组结构）
+    data,
+    // 文件名称
+    filename: excelName.value || exportDefaultName,
+    // 是否自动列宽
+    autoWidth: true,
+    // 文件类型
+    bookType: 'xlsx'
+  })
 }
 const i18n = useI18n()
 let exportDefaultName = i18n.t('msg.excel.defaultName')
