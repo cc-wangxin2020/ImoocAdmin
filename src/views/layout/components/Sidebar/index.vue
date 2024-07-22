@@ -10,9 +10,9 @@
         imooc-admin
       </h1>
     </div>
-    <el-scroll-bar>
+    <el-scrollbar>
       <sidebar-menu></sidebar-menu>
-    </el-scroll-bar>
+    </el-scrollbar>
   </div>
 </template>
 

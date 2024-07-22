@@ -20,7 +20,7 @@
 <script setup>
 import { articleDetail } from '@/api/article'
 import { ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 const route = useRoute()
 const articleId = route.params.id
 const detail = ref({})
@@ -28,6 +28,10 @@ const getArticleDetail = async () => {
   detail.value = await articleDetail(articleId)
 }
 getArticleDetail()
+const router = useRouter()
+const onEditClick = () => {
+  router.push(`/article/editor/${articleId}`)
+}
 </script>
 
 <style lang="scss" scoped>

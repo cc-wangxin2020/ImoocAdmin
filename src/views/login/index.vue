@@ -130,14 +130,14 @@ $cursor: #fff;
     margin: 0 auto;
     overflow: hidden;
 
-    :deep .el-form-item {
+    :deep(.el-form-item) {
       border: 1px solid rgba(255, 255, 255, 0.1);
       background: rgba(0, 0, 0, 0.1);
       border-radius: 5px;
       color: #454545;
     }
 
-    :deep .el-input {
+    :deep(.el-input) {
       display: inline-block;
       height: 47px;
       width: 85%;
